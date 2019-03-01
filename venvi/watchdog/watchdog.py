@@ -92,6 +92,80 @@ With edges E = {(1,2),(2,2),(2,4),(2,5),(4,1),(4,5),(6,3)}
                 for k in iterKeys(self):
                     self[k] = self.sortedDictValues(self[k])
                     t1 = time()
+                    logger.info('deep_annealing: made self-annealing in {}s'.format(t1-t0))
+                    self.remove_self_loops_dict()
+                else:
+                    for k in iterKeys(self):
+                        self[k] = list(sorted(set(self[k])))
+
+                    t1 = time()
+                    logger.info('deep_annealing: made self-annealing in {}s'.format(t1-t0))
+
+                    self.remove_self_loops()
+
+                    return self
+
+                def sortedDictValues(self, adict):
+                    keys = adict.keys()
+                    keys.sort()
+                    return map(adict.get, keys)
+
+                def deep_annealing_dict(self):
+
+                    t0 = time()
+
+                    for k in iterKeys(self):
+                        self[k] = self.sortedDictValues(self[k])
+                        t1 = time()
+                        logger.info('deep_annealing: made self-annealing in {}s'.format(t1-t0))
+                        self.remove_self_loops_dict()
+                        return self
+
+                def remove_self_loops(self):
+
+                    removed =0
+                    t0 = time()
+                    if self.isDende == True:
+                        for x in self:
+                            if x in self[x].keys():
+                                del self[x][x]
+                                removed += 1
+                    else:
+                        for x in self:
+                            if x in self[x]:
+                                self[x].remove(x)
+                                removed += 1
+
+                    t1 = time()
+
+                    logger.info('remove_self_loops: removed{} loops in {}s'.format(removed, (t1-t0)))
+                    return self
+
+                def check_self_loops(self):
+                    for x in self:
+                        for y in self[x]:
+                            if x == y:
+                                return True
+
+                            return False
+
+                def has_edge(self, v1, v2):
+                    if v2 in self[v1] or v1 in self[v2]:
+                        return True
+                    return False
+
+                def degree(self, nodes=None)
+                    if isinstance(nodes, Iterable):
+                        return {v:len(self[v]) for v in nodes}
+                    else:
+                        return len(self[nodes])
+
+                def order(self):
+                    "Return the number of nodes in the graph"
+                    return len(self)
+
+                def number_of_edges(self):
+
 
 
 class State:
