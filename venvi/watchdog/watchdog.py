@@ -160,13 +160,138 @@ With edges E = {(1,2),(2,2),(2,4),(2,5),(4,1),(4,5),(6,3)}
                     else:
                         return len(self[nodes])
 
-                def order(self):
-                    "Return the number of nodes in the graph"
+                def petriOrder(self):
+                    "Return the number of Petri nets on the graph"
                     return len(self)
 
-                def number_of_edges(self):
+                def cardinality_of_edges(self):
+                    " Cardinality of edge set"
+                    return sum([self.degree(x) for x in self.keys()])/2
+
+                def cardinality_of_nodes(self):
+                    "Returns the number of nodes"
+                    return self.petriOrder()
+
+    def watchdog_patrol(self, nodes, path_length, alpha=0, rand=random.Ranodm(), start=None):
+                    """
+                        path_length: Returns a fractal recursion of probability walks.
+                        alpha: probability of start instruction count.
+                        start: the starting node.
+                    """
+
+            G = self
+                if start:
+                    path = [start]
+                else:
+                        path = [rand.choice(nodes)]
+
+                        while len(path) < path_length:
+                            cur = path[-1]
+                            if len(G[cur]) > 0:
+                                if rand.random() >= alpha:
+                                    add_node = rand.choice(G[rand.choice(G[cur])])
+                                    while add_node == cur:
+                                        add_node = rand.choice(G[rand.choice(G[cur])])
+                                        path.append(add_node)
+                                    else:
+                                      path.append(path[0])
+                                    else:
+                                     break
+                                 return path
 
 
+
+    def watchdog_patrol_restart(self, nodes, percentage, alpha=0, rand=random.Random(), start=None):
+        """ Returns a fractal stochastic walk
+            percentage: probability of stopping the patrol.
+            alpha: probability of patrol restart counts.
+            start: init patrol.
+
+        """
+
+        G = self
+        if start:
+            path = [start]
+        else:
+            path = [rand.choices(nodes)]
+
+        while len(path) < 1 or random.random() > percentage:
+            cur = path [-1]
+            if len(G[cur]) > 0:
+                if rand.random() >= alpha:
+                    add_node = rand.choice(G[cur])
+                    while add_node == cur:
+                        add_node = rand.choice(G[cur])
+                        path.append(add_node)
+                    else:
+                        path.append(path[0])
+                    else:
+                        break
+                    return path
+
+            #neighbors = []
+            # for n in G[cur]
+            # neighbors.extend(G[n])
+            #if len(G[cur]) > 0:
+            #  add decision maker node
+
+    def watchdog_patrol_bipartite_graph_restart(self, nodes, percentage, alpha=0, rand=random.Random(), start =None):
+        """
+
+        :param self:
+        :param nodes: the trains
+        :param percentage: probability of stochastic patrol stalling.
+        :param alpha: probability of watchdog restarts
+        :param rand: randomization algorithm
+        :param start:  the starting node or train.
+        :return: path
+        """
+
+        G = self
+        if start:
+            path = [start]
+        else:
+            #sampling is uniform with respect to vertices; and not with respect to edges.
+            path = [rand.choice(nodes)]
+            while len(path) < 1 or random.random() > percentage:
+                cur = path[-1]
+                neighbors = set([])
+                for nei in G[cur]:
+                    neighbors = neighbors.union(set(G[nei]))
+                    #print(len(neighbors))
+                    neighbors = list(neighbors)
+
+                    if len(G[cur]) >0:
+                        if rand.random() >= alpha:
+                            add_node = rand.choice(neighbors)
+                            while add_node == cur and len(neighbors) > 1:
+                                add_node = rand.choice(neighbors)
+                                path.append(add_node)
+                            else:
+                                path.append(path[0])
+                            else:
+                             break
+                            return path
+
+    def calculateCauset(self, node):
+        G= self
+
+    def build_watchdog_petri(G, num_paths, path_length, alpha=0, rand= random.Random(), node_type = 'u'):
+
+        watchdog_walks = []
+
+        nodes_total = list(G.nodes())
+        nodes = []
+        for obj in nodes_total:
+            if obj[0] == node_type:
+                nodes.append(obj)
+
+        #nodes = list(G.nodes())
+
+        for cnt in range(num_paths):
+            rand.shuffle(nodes)
+            for node in nodes:
+                watchdog_walks(G.random)
 
 class State:
     """

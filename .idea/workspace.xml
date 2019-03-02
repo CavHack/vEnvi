@@ -15,8 +15,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/venvi/watchdog/watchdog.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="482">
-              <caret line="154" column="32" selection-start-line="154" selection-start-column="32" selection-end-line="154" selection-end-column="32" />
+            <state relative-caret-position="633">
+              <caret line="300" column="7" lean-forward="true" selection-start-line="300" selection-start-column="7" selection-end-line="300" selection-end-column="7" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -41,7 +41,7 @@
     <option name="x" value="-57" />
     <option name="y" value="40" />
     <option name="width" value="955" />
-    <option name="height" value="691" />
+    <option name="height" value="898" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -75,6 +75,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -102,7 +103,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-57" y="40" width="955" height="691" extended-state="0" />
+    <frame x="-57" y="40" width="955" height="898" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
@@ -137,8 +138,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/venvi/watchdog/watchdog.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="482">
-          <caret line="154" column="32" selection-start-line="154" selection-start-column="32" selection-end-line="154" selection-end-column="32" />
+        <state relative-caret-position="633">
+          <caret line="300" column="7" lean-forward="true" selection-start-line="300" selection-start-column="7" selection-end-line="300" selection-end-column="7" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
